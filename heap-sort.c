@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define heapSize 5;
+#define heapSize 5
 
 void maxHeapify(int a[], int i) {
   int aux = 0;
