@@ -6,12 +6,12 @@ void maxHeapify(int a[], int i, int heapSize) {
   int leftChild = 2*i+1;
   int rightChild = 2*i+2;
 
-  if (leftChild <= heapSize && a[leftChild] > a[i]) {
+  if (leftChild <= heapSize-1 && a[leftChild] > a[i]) {
     maior = leftChild;
   } else {
     maior = i;
   }
-  if (rightChild <= heapSize && a[rightChild] > a[maior]) {
+  if (rightChild <= heapSize-1 && a[rightChild] > a[maior]) { //????
     maior = rightChild;
   }
   if (maior != i) {
@@ -23,7 +23,7 @@ void maxHeapify(int a[], int i, int heapSize) {
 }
 
 void buildMaxHeap(int a[], int heapSize) {
-  for (int i = (heapSize / 2); i >= 0; i--) {
+  for (int i = (heapSize / 2)-1; i >= 0; i--) { //-1 é para assegurar que as folhas não sejam iteradas
 	maxHeapify(a, i, heapSize);
   }
 }
