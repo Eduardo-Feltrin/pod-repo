@@ -3,8 +3,8 @@
 void maxHeapify(int a[], int i, int heapSize) {
   int aux = 0;
   int maior = 0;
-  int leftChild = i << 1;
-  int rightChild = leftChild + 1;
+  int leftChild = 2*i+1;
+  int rightChild = 2*i+2;
 
   if (leftChild <= heapSize && a[leftChild] > a[i]) {
     maior = leftChild;
@@ -23,18 +23,18 @@ void maxHeapify(int a[], int i, int heapSize) {
 }
 
 void buildMaxHeap(int a[], int heapSize) {
-  for (int i = heapSize / 2; i > 0; i--) {
-    maxHeapify(a, i, heapSize);
+  for (int i = (heapSize / 2); i >= 0; i--) {
+	maxHeapify(a, i, heapSize);
   }
 }
 
 void heapSort(int a[], int heapSize) {
   int aux = 0;
   buildMaxHeap(a, heapSize);
-  for (int lastElem = heapSize; lastElem > 1; lastElem--) {
+  for (int lastElem = heapSize; lastElem >= 1; lastElem--) {
     aux = a[0];
-    a[0] = a[lastElem];
-    a[lastElem] = aux;
+    a[0] = a[lastElem-1];
+    a[lastElem-1] = aux;
     heapSize--;
     maxHeapify(a, 0, heapSize); //0 == primeiro elemento
   }
@@ -43,13 +43,12 @@ void heapSort(int a[], int heapSize) {
 int main() {
   // Declaração de variáveis
   int a[] = {10, 20, 8, 4, 5};
-  int heapSize = sizeof(a)/sizeof(a[0]); // sizeof recebe o tamanho do vetor e após isso
-  int i = 0;							 // divide pelo valor de um int(4) para saber o número de elementos
+  int heapSize = sizeof(a)/sizeof(a[0]); //sizeof recebe o tamanho do vetor e após isso divide pelo valor de um int(4) para saber o número de elementos
 
   // Impressão dos valores presentes no vetor DESORDENADO
   printf("\n\tMétodo de ordenação 'Heap Sort'\n");
   printf("\tVetor inicial:{");
-  for (; i < heapSize; i++) {
+  for (int i = 0; i < heapSize; i++) {
     if (i != heapSize - 1) {
       printf("%d, ", a[i]);
     } else {
@@ -63,7 +62,7 @@ int main() {
 
   // Impressão dos valores presentes no vetor ORDENADO
   printf("\tVetor ordenado:{");
-  for (i = 0; i < heapSize; i++) {
+  for (int i = 0; i < heapSize; i++) {
     if (i != heapSize - 1)
       printf("%d, ", a[i]);
     else
